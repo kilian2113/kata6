@@ -72,10 +72,9 @@ public class HistogramChart {
         return series;
     }
 
-    public void save(String filename) {
-
+    public void savePNG() {
         try {
-            File file = new File(filename);
+            File file = new File("histogram.png");
             ChartUtils.saveChartAsPNG(file, this.chart(), 1920, 1080);
         } catch (IOException e) {
             throw new RuntimeException(e);
