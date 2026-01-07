@@ -8,7 +8,11 @@ public class MovieDeserializer {
     }
 
     public static Movie fromTsv(String[] split) {
-        return new Movie(split[2], toInteger(split[5]), toInteger(split[7]));
+        return new Movie(split[2], toInteger(split[5]), toInteger(split[7]), toGender(split[8]));
+    }
+
+    private static String toGender(String s) {
+        return s.equals("\\N") ? "None" : s.split(",")[0];
     }
 
     public static int toInteger(String s) {

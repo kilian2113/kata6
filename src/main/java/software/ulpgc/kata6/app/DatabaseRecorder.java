@@ -16,7 +16,7 @@ public class DatabaseRecorder implements Recorder {
     public DatabaseRecorder(Connection connection) throws SQLException {
         this.connection = connection;
         createTableIfNotExists();
-        this.preparedStatement = connection.prepareStatement("INSERT INTO movies (title, year, duration) VALUES (?, ?, ?)");
+        this.preparedStatement = connection.prepareStatement("INSERT INTO movies (title, year, duration, gender) VALUES (?, ?, ?, ?)");
     }
 
     @Override
@@ -48,6 +48,7 @@ public class DatabaseRecorder implements Recorder {
         preparedStatement.setString(1, movie.title());
         preparedStatement.setInt(2, movie.year());
         preparedStatement.setInt(3, movie.duration());
+        preparedStatement.setString(4, movie.gender());
         preparedStatement.addBatch();
     }
     private void flushBatchIfRequired() throws SQLException {
@@ -55,6 +56,6 @@ public class DatabaseRecorder implements Recorder {
     }
 
     private void createTableIfNotExists() throws SQLException {
-        connection.createStatement().execute("CREATE TABLE IF NOT EXISTS movies (title TEXT, year INTEGER, duration INTEGER)");
+        connection.createStatement().execute("CREATE TABLE IF NOT EXISTS movies (title TEXT, year INTEGER, duration INTEGER, gender TEXT);)");
     }
 }

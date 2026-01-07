@@ -42,7 +42,8 @@ public class DatabaseStore implements Store {
     private Movie readMovieIn(ResultSet rs) throws SQLException {
         return new Movie(rs.getString(1),
                 rs.getInt(2),
-                rs.getInt(3)
+                rs.getInt(3),
+                rs.getString(4)
         );
     }
 
