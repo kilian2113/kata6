@@ -16,8 +16,8 @@ public class Main {
     public static void main(String[] args) throws SQLException {
         try (Connection connection = DriverManager.getConnection("jdbc:sqlite:" + database)) {
             connection.setAutoCommit(false);
-            Desktop.with(moviesIn(connection))
-                    .display()
+            Desktop.create()
+                    .display(HistogramChart.with(moviesIn(connection)).chart())
                     .setVisible(true);
         }
     }
